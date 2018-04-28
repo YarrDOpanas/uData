@@ -3,8 +3,9 @@
 import random
 
 def input_matrix():
-    print("Input the dimension(NxM): ")
+    print("Input the dimension:\nN: ")
     size1 = int(input())
+    print("M: ")
     size2 = int(input())
     A = []
     for i in range(size1):
@@ -16,6 +17,8 @@ def input_matrix():
 A = input_matrix()
 B = input_matrix()
 def multiplying(A, B):
+    if(len(A[0]) != len(B)):
+        return False
     tmp = []
     for i in range(len(A)):
         tmp.append([])
@@ -26,4 +29,4 @@ def multiplying(A, B):
             tmp[i].append(sum)
     return tmp
 C = multiplying(A, B)
-print("C = A x B = ", C)
+print(C) if C else print("Wrong dimension, can't be multiplied")
