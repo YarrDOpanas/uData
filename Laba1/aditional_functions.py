@@ -43,3 +43,4 @@ def subtraction(A, B):
         for j in range(len(A[0])):
             tmp[i].append(A[i][j] - B[i][j])
     return tmp
+

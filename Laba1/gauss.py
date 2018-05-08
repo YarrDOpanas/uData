@@ -1,6 +1,5 @@
 import copy
 import input_output as io
-import aditional_functions as af
 
 def changing_lines(A, b, i):
     '''Takes matrix, vector and current index  as argument.
@@ -28,7 +27,6 @@ def Gauss(A, a):
     '''Takes matrix and vector as argument. Solves SLAE and returns the answer
      or iteration in witch we figured out that we can't do it.'''
 
-    af.checking_SLAR(A, a)
     B = copy.deepcopy(A)
     b = copy.deepcopy(a)
     for i in range(len(B) - 1):
