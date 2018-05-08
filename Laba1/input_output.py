@@ -8,12 +8,6 @@ def print_matrix(A, text):
             print('{:>6}'.format(round(A[i][j], 3)), end = ' ')
         print()
 
-def print_vector(a, text):
-    print(text)
-    for i in range(len(a)):
-        print('{:>6}'.format(round(a[i], 3)), end = ' ')
-    print()
-
 def Input_matrix_from_keyboard():
     '''Input matix by lines. Every time input the whole line.
     Returns inputed matrix'''
