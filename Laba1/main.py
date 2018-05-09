@@ -20,3 +20,6 @@ if L == False:
 io.print_matrix(L, "Matrix L:")
 io.print_matrix(U, "Matrix U:")
 io.print_matrix(af.multiplying(L, U), "L*U = ")
+B = LU.Inversed_matrix(L, U)
+io.print_matrix(B, "A^(-1) = ")
+print("Number of conditionality = " + str(round(LU.matrix_norm(A)*LU.matrix_norm(B), 3)))
