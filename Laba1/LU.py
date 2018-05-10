@@ -1,4 +1,5 @@
 import copy
+import numpy as np
 
 def Factorization(A):
     '''Takes as argument matrix, that should be factorized.
@@ -10,7 +11,7 @@ def Factorization(A):
     U = copy.deepcopy(A)
     L = [[0] * len(U[0]) for i in range(len(U))]
     for i in range(len(U)):
-        if U[i][i] == 0:
+        if abs(U[i][i]) < np.finfo(np.float32).eps:
             return (False, False)
         L[i][i] = 1
         for k in range(i + 1, len(U)):
@@ -56,3 +57,25 @@ def matrix_norm(A):
         if sum > max:
             max = sum
     return max
+
+def solution(L, U, b):
+    '''Takes as argument A matrix via LU-factorization
+    and column of free numbers. Returns matrix of answers'''
+
+    y = []
+    y.append([])
+    y[0].append(b[0][0])
+    for i in range(1, len(U)):
+        sum = 0
+        for j in range(i):
+            sum += L[i][j] * y[j][0]
+        y.append([])
+        y[i].append(b[i][0] - sum)
+    x = [[0] * 1 for i in range(len(U))]
+    x[-1][0] = y[-1][0] / U[-1][-1]
+    for i in range(len(U) - 2, -1, -1):
+        sum = 0
+        for j in range(i + 1, len(U)):
+            sum += x[j][0] * U[i][j]
+        x[i][0] = 1 / U[i][i] * (y[i][0] - sum)
+    return x

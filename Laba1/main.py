@@ -11,7 +11,7 @@ if type(x) == int:
     print("The system is degenerate, we figure out it on the " +
           str(-x) + " iteration")
 else:
-    io.print_matrix(x, "Answer: ")
+    io.print_matrix(x, "Answer via Gauss: ")
     io.print_matrix(af.subtraction(af.multiplying(A, x), b), "r = A*x - b = ")
 (L, U) = LU.Factorization(A)
 if L == False:
@@ -22,4 +22,7 @@ io.print_matrix(U, "Matrix U:")
 io.print_matrix(af.multiplying(L, U), "L*U = ")
 B = LU.Inversed_matrix(L, U)
 io.print_matrix(B, "A^(-1) = ")
+x = LU.solution(L, U, b)
+io.print_matrix(x, "Answer via LU factorization: ")
 print("Number of conditionality = " + str(round(LU.matrix_norm(A)*LU.matrix_norm(B))))
+io.print_matrix(af.subtraction(af.multiplying(A, x), b), "r = A*x - b = ")
