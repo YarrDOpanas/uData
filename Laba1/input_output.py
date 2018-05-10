@@ -5,7 +5,7 @@ def print_matrix(A, text):
     print(text)
     for i in range(len(A)):
         for j in range(len(A[i])):
-            print('{:>6}'.format(round(A[i][j], 3)), end = ' ')
+            print('{:>10}'.format(round(A[i][j], 7)), end = ' ')
         print()
 
 def Input_matrix_from_keyboard():
@@ -23,7 +23,7 @@ def Input_matrix_from_keyboard():
         quit(1)
     print('Input values: ')
     try:
-        A = [[int(j) for j in input().split()] for i in range (n)]
+        A = [[float(j) for j in input().split()] for i in range (n)]
     except(Exception):
         print('Invalid value')
         quit(1)
