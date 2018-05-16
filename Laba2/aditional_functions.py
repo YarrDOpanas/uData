@@ -43,3 +43,19 @@ def subtraction(A, B):
         for j in range(len(A[0])):
             tmp[i].append(A[i][j] - B[i][j])
     return tmp
+
+def addition(A, B):
+    '''Takes two matrix as argument and returns their
+        addition if can do it. Else returns False'''
+
+    if len(A) != len(B):
+        return False
+    for i in range(len(A)):
+        if len(A[i]) != len(B[i]):
+            return False
+    tmp = []
+    for i in range(len(A)):
+        tmp.append([])
+        for j in range(len(A[0])):
+            tmp[i].append(A[i][j] + B[i][j])
+    return tmp
