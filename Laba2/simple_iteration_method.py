@@ -1,6 +1,8 @@
 import input_output as io
 import math
 import aditional_functions as af
+import copy
+
 def matrix_norm(A):
     '''Takes matrix as argument. Returns cubic norm of matrix.'''
 
@@ -31,6 +33,9 @@ def simple_iter_method(A, a):
     print("Approximate number of steps = " + str(k))
     x = [[0] * 1 for i in range(len(A))]
     for i in range(k):
+        y = copy.deepcopy(x)
         io.print_matrix(x, str(i) + " step: ")
         x = af.addition(af.multiplying(B, x), b)
+        print("Epsilon = " + str(round(af.epsilon(x, y), 5)))
+        print("--------------------")
     return x

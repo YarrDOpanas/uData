@@ -5,7 +5,7 @@ def print_matrix(A, text):
     print(text)
     for i in range(len(A)):
         for j in range(len(A[i])):
-            print('{:>10}'.format(round(A[i][j], 7)), end = ' ')
+            print('{:>8}'.format(round(A[i][j],5)), end = ' ')
         print()
 
 def Input_matrix_from_keyboard():

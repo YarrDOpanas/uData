@@ -59,3 +59,13 @@ def addition(A, B):
         for j in range(len(A[0])):
             tmp[i].append(A[i][j] + B[i][j])
     return tmp
+
+def epsilon(x, y):
+    '''Takes two vectors as argument.
+    Returns their cubic norm.'''
+
+    max = 0
+    for i in range(len(x)):
+        if abs(x[i][0] - y[i][0]) > max:
+            max = abs(x[i][0] - y[i][0])
+    return max
