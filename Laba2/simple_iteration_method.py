@@ -32,10 +32,14 @@ def simple_iter_method(A, a):
     k = round(math.log(e * (1 - q) / matrix_norm(b), q))
     print("Approximate number of steps = " + str(k))
     x = [[0] * 1 for i in range(len(A))]
-    for i in range(k):
+    step = 0
+    eps = 1
+    while eps > e:
+        step += 1
         y = copy.deepcopy(x)
-        io.print_matrix(x, str(i) + " step: ")
+        io.print_matrix(x, str(step) + " step: ")
         x = af.addition(af.multiplying(B, x), b)
-        print("Epsilon = " + str(round(af.epsilon(x, y), 5)))
+        eps = af.epsilon(x, y)
+        print("Epsilon = " + str(round(eps, 5)))
         print("--------------------")
     return x
