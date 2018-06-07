@@ -1,6 +1,7 @@
 import numpy as np
 import Jacobi
-import  math
+import QR
+import  copy
 np.set_printoptions(precision=3)
 
 try:
@@ -19,3 +20,6 @@ print("Eigenvalues:\n", np.array2string(L))
 print("Eigenvectors:\n", np.array2string(X))
 print("Q * Qt =\n", np.array2string(X @ X.T))
 print("Q * L * Qt =\n", np.array2string(X @ L @ X.T))
+B = QR.Hessenberg(A)
+print("Hessenberg matrix form:\n" + np.array2string(B))
+
