@@ -8,8 +8,14 @@ def Hessenberg(B):
 
     A = copy.deepcopy(B)
     for i in range(0, A.__len__() - 2):
-        b = np.sign(-A[i+ 1][i]) * math.sqrt((A.T[i][i+1:] ** 2).sum())
-        m = 1/math.sqrt(2 * b**2 - 2 * A[i+1][i]*b)
+        if abs(np.sign(-A[i + 1, i])) > 10 ** (-8):
+            b = np.sign(-A[i + 1, i]) * np.sqrt(np.power(A[i + 1:, i], 2).sum())
+        else:
+            b = np.sqrt(np.power(A[i + 1:, i], 2).sum())
+        if abs(b) > 10 ** (-8):
+            m = 1 / np.sqrt(2 * b ** 2 - 2 * A[i + 1, i] * b)
+        else:
+            m = 1
         w = copy.copy(A.T[i])
         w[:i+1] = 0
         w[i + 1] = A[i+1][i] - b
