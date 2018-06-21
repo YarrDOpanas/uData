@@ -1,6 +1,5 @@
-import numpy as np
 import math
-
+import numpy as np
 a = 7
 b = -0.8
 c = 0.49
@@ -25,10 +24,12 @@ def grad_method_shred_step():
     xy = xy0 - p * grad(xy0[0], xy0[1])
     i = 0
     while np.linalg.norm(grad(xy[0], xy[1])) > np.finfo(np.float32).eps:
-        while function(xy[0], xy[1]) <= function(xy0[0], xy0[1]) - eps * p * np.linalg.norm(grad(xy[0], xy[1]))**2:
+        while function(xy[0], xy[1]) <= function(xy0[0], xy0[1]) - eps * p * f.np.linalg.norm(f.grad(xy[0], xy[1]))**2:
             i += 1
             xy0 = xy
             xy = xy0 - p * grad(xy0[0], xy0[1])
         p *= delta
         xy = xy0 - p * grad(xy0[0], xy0[1])
+        if i == 100000:
+            break
     return i, xy, function(xy[0], xy[1])

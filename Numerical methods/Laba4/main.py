@@ -2,7 +2,7 @@ import numpy as np
 np.set_printoptions(precision=3)
 try:
     A = np.loadtxt("Alisa.txt")
-    b = np.loadtxt("Alisa_vector.txt")
+    b = np.loadtxt("alisa_vector.txt")
 except(Exception):
     print("Could not find file or invalid matrix")
     exit(-1)
