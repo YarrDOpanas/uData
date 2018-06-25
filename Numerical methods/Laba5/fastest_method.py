@@ -1,16 +1,13 @@
 import numpy as np
 from sympy import symbols, Derivative
+from scipy import optimize
 
-def function(X):
-    return X[0]**2 + 2*X[1]**2 - 4*X[0] - 4*X[1]
-def df_x(X):
-    return 2*X[0] - 4
-def df_y(X):
-    return 4*X[1] - 4
-def grad(X):
-    return np.array([df_x(X), df_y(X)])
+def grad(X, function):
+    return optimize.approx_fprime(X, function, np.finfo(np.float32).eps)
+
 def A():
-    return np.array([[2,0], [0,4]])
+    return np.array([[2,0], [0,2]])
+
 def partial_derivative():
     x, y = symbols('x y')
     f = x ** 2 + 2 * y ** 2 - 4 * x - 4 * y
@@ -18,16 +15,14 @@ def partial_derivative():
     print("df/dx = ", Derivative(f, x).doit())
     print("df/dy = ", Derivative(f, y).doit())
 
-def fastest_descent_method():
-    '''Takes function as argument. Returns amount of iterations,
+def fastest_descent_method(function, xy0):
+    '''Takes function and initial approximation as argument. Returns amount of iterations,
     vector of coordinates of the minimum point, function value in this point.'''
-
-    xy0 = np.array([-1, -1])
     i = 0
     xy = xy0
-    while (np.linalg.norm(grad(xy0))**2 > np.finfo(np.float32).eps) & (i < 100000):
+    while (np.linalg.norm(grad(xy0, function))**2 > np.finfo(np.float32).eps) & (i < 100000):
         i += 1
-        p = (grad(xy0) @ grad(xy0)) / (A() @ grad(xy0) @ grad(xy0))
-        xy = xy0 - p * grad(xy0)
+        p = (grad(xy0, function) @ grad(xy0, function)) / (A() @ grad(xy0, function) @ grad(xy0, function))
+        xy = xy0 - p * grad(xy0, function)
         xy0 = xy
     return i, xy, function(xy)
