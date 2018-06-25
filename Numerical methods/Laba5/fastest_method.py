@@ -1,4 +1,5 @@
 import numpy as np
+from sympy import symbols, Derivative
 
 def function(X):
     return X[0]**2 + 2*X[1]**2 - 4*X[0] - 4*X[1]
@@ -10,6 +11,12 @@ def grad(X):
     return np.array([df_x(X), df_y(X)])
 def A():
     return np.array([[2,0], [0,4]])
+def partial_derivative():
+    x, y = symbols('x y')
+    f = x ** 2 + 2 * y ** 2 - 4 * x - 4 * y
+    print("Our function: ", f)
+    print("df/dx = ", Derivative(f, x).doit())
+    print("df/dy = ", Derivative(f, y).doit())
 
 def fastest_descent_method():
     '''Takes function as argument. Returns amount of iterations,
