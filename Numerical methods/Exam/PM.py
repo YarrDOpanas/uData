@@ -6,7 +6,7 @@ def PowerMethod(A):
 
     delta = 10**(-4)
     y0 = np.ones(len(A))
-    lam0 = 1
+    lam0 = 2
     x0 = y0 / np.linalg.norm(y0)
     i = 0
     while i < 1000:
@@ -15,6 +15,7 @@ def PowerMethod(A):
         x1 = y1 / np.linalg.norm(y0)
         lam1 = y1[abs(x0) > delta] / x0[abs(x0) > delta]
         lam1 = lam1.sum()
+
         if (lam1 - lam0 < np.finfo('float32').eps):
             break
         x0 = x1

@@ -1,8 +1,8 @@
 import numpy as np
 np.set_printoptions(precision=3)
 try:
-    A = np.loadtxt("matrix_exam_4.txt")
-    b = np.loadtxt("vector_exam_4.txt")
+    A = np.loadtxt("exam_matrix.txt")
+    b = np.loadtxt("exam_vector.txt")
 except(Exception):
     print("Could not find file or invalid matrix")
     exit(-1)
