@@ -8,7 +8,9 @@ def PowerMethod(A):
     y0 = np.ones(len(A))
     lam0 = 1
     x0 = y0 / np.linalg.norm(y0)
-    while True:
+    i = 0
+    while i < 1000:
+        i += 1
         y1 = A @ x0
         x1 = y1 / np.linalg.norm(y0)
         lam1 = y1[abs(x0) > delta] / x0[abs(x0) > delta]
